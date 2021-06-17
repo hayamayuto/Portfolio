@@ -1,0 +1,140 @@
+.toggle {
+  margin: 0 15px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 62px;
+  height: 32px;
+  display: inline-block;
+  position: relative;
+  border-radius: 50px;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background-color: #707070;
+  transition: background-color ease 0.3s;
+}
+
+.toggle:before {
+  content: "on off";
+  display: block;
+  position: absolute;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  background: #fff;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+  font: 10px/28px Helvetica;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-indent: -22px;
+  word-spacing: 37px;
+  color: #fff;
+  text-shadow: -1px -1px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+}
+
+.toggle:checked {
+  background-color: #2bf81f;
+}
+
+.toggle:checked:before {
+  left: 32px;
+}
+
+.timeline li {
+  overflow: hidden;
+  margin: 0;
+  position: relative;
+}
+
+.timeline-date {
+  width: 110px;
+  float: left;
+  margin-top: 20px;
+}
+
+.timeline-content {
+  width: 75%;
+  float: left;
+  border-left: 3px #8b0304 solid;
+  padding-left: 20px;
+}
+
+.timeline-content::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  background: #8c3003;
+  position: absolute;
+  left: 106px;
+  top: 24px;
+  border-radius: 100%;
+}
+
+@media (max-width: 1024px) {
+  .timeline {
+    padding-left: 0;
+  }
+  .timeline-content {
+    width: 90%;
+    padding-left: 0;
+    margin-bottom: 10px;
+    border-left: none;
+  }
+  .timeline-content h4 {
+    margin: 5px 0;
+  }
+  .timeline-content p {
+    margin: 0 0 0 10px;
+    padding: 10px 0 10px 5px;
+    border-left: 3px #8b0304 solid;
+  }
+  .timeline-content::before {
+    all: initial;
+  }
+}
+
+.sitemap ul {
+  list-style: none;
+}
+
+.sitemap ul li ul li {
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.sitemap ul li ul li::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  width: 10px;
+  height: calc(100% + 1rem);
+  border-left: 1.5px solid #000;
+}
+
+.sitemap ul li ul li:last-child::before {
+  height: 1rem;
+}
+
+.sitemap ul li ul li::after {
+  content: "";
+  position: absolute;
+  top: 1rem;
+  left: -16px;
+  width: 10px;
+  border-bottom: 1.5px solid #000;
+}
+
+.dark-theme .sitemap ::before {
+  border-color: #fff;
+}
+
+.dark-theme .sitemap ::after {
+  border-color: #fff;
+}

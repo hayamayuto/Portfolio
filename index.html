@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Yuto's portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Offline portfolio of web development beginner,Yuto/WEB開発ビギナーYUTOのオフラインポートフォリオ">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/form.css">
+    <!-- JavaScript -->
+    <script type=text/javascript>
+        //default theme setting
+        window.addEventListener("DOMContentLoaded", () => {
+            const toggle = document.getElementById("turn-dark");
+            const URLparameter = location.search.substring(1);
+            if (URLparameter == "switch=on") {
+                toggle.checked = true;
+                DarkTheme();
+            } else if (URLparameter == "switch=off") {
+                LightTheme();
+            } else {
+                if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                    toggle.checked = true;
+                    DarkTheme();
+                } else {
+                    LightTheme();
+                }
+            }
+        //change theme
+        toggle.addEventListener("change", () => {
+            if (toggle.checked == true) {
+                DarkTheme();
+            } else {
+                LightTheme();
+            }
+        });
+        //open menu bar
+        const btn = document.getElementById("btn-menu");
+        const header = document.querySelector(".header-li");
+        const selector = document.querySelector(".selector");
+        const selector1 = document.querySelector(".selector").childNodes[1];
+        const selector2 = document.querySelector(".selector").childNodes[3];
+        btn.addEventListener("click", () => {
+            if (btn.value == "MENU") {
+                btn.value = "CLOSE";
+                header.classList.add("open-menu");
+                header.appendChild(selector1);
+                header.appendChild(selector2);
+            } else {
+                btn.value = "MENU";
+                header.classList.remove("open-menu");
+                selector.appendChild(selector1);
+                selector.appendChild(selector2);
+            }
+        });
+    });
+    //turn on light mode
+    function LightTheme() {
+        const link = document.querySelectorAll("a");
+        document.body.classList.remove("dark-theme");
+        document.logo.src = "img/light_logo.png";
+        link.forEach((x) => {
+            x.search = "switch=off";
+        });
+    }
+    //turn on dark mode
+    function DarkTheme() {
+        const link = document.querySelectorAll("a");
+        document.body.classList.add("dark-theme");
+        document.logo.src = "img/dark_logo.png";
+        link.forEach((x) => {
+            x.search = "switch=on";
+        });
+    }
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/logo.png">
+</head>
+
+<body lang="ja">
+    <header>
+        <nav>
+            <a class="header-logo underbar" href="index.html">
+                <img src="img/light_logo.png" name="logo" alt="YUTO's portfolio top" height="50px">
+            </a>
+            <ul class="header-li">
+                <li><span></span><a class="underbar" href="ja/index.html">ホーム</a></li>
+                <li><span></span><a class="underbar" href="ja/myworks.html">作品集</a></li>
+                <li><span></span><a class="underbar" href="ja/reference.html">参考文献</a></li>
+                <li><span></span><a class="underbar" href="ja/contact.html">コンタクト</a></li>
+            </ul>
+            <ul class="selector">
+                <li>
+                    <label class="underbar">ダークモード<input type="checkbox" id="turn-dark" class="toggle"></label>
+                </li>
+                <li><a href="en/index.html" class="underbar">EN</a><span class="linebetween"></span><a
+                        href="ja/index.html" class="underbar">JA</a></li>
+            </ul>
+            <input value="MENU" type="button" id="btn-menu" class="btn-menu">
+        </nav>
+    </header>
+    <div class="main-text">
+        <article>
+            <h1><span>このサイトについて</span></h1>
+            <p>
+                Yuto's portfolioへようこそ！<br> 
+                最近プログラミングに熱中していて、 上智大学で経済学を学びつつプログラミングを学んでいます。
+                まだまだ未熟者ですが、どんどんwebサイトもオンラインで更新していく予定ですので アドバイスやコメントなどありましたら
+                <a href="ja/contact.html">コンタクト</a>からお願いします！
+            </p>
+            <h2>自己紹介</h2>
+            <p>
+                名前：羽山雄登/Yuto Hayama<br> 
+                趣味：アウトドア全般（特に登山）、プログラミング、マインクラフト<br> 
+                使用言語：日本語、英語<br> 
+                プログラミング言語：JavaScript, VBA<br>
+                現在Python勉強中です
+            </p>
+        </article>
+        <aside>
+            <h3>
+                Tips
+            </h3>
+            <p>
+                このwebサイトでは、ダークモード非対応のブラウザでもダークモードを利用できます。ブラウザがダークモードに対応している場合は、自動的に切り替えを行います。
+                また、別途ヘッダーのボタンから変更することも可能です。お気軽にどうぞ！
+            </p>
+            <h3>
+                Site Map
+            </h3>
+            <p>
+                <div class="sitemap">
+                    <ul>
+                        <li><a href="index.html">Top</a>
+                            <ul>
+                                <li>日本語
+                                    <ul>
+                                        <li><a href="ja/index.html">ホーム</a></li>
+                                        <li><a href="ja/myworks.html">作品集</a></li>
+                                        <li><a href="ja/reference.html">参考文献</a></li>
+                                        <li><a href="ja/contact.html">コンタクト</a></li>
+                                    </ul>
+                                </li>
+
+                                <li>English
+                                    <ul>
+                                        <li><a href="en/index.html">Home</a></li>
+                                        <li><a href="en/myworks.html">My Works</a></li>
+                                        <li><a href="en/reference.html">Reference</a></li>
+                                        <li><a href="en/contact.html">Contact</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </p>
+        </aside>
+    </div>
+    <footer>
+        <p><small>&copy; Copyright 2021 Yuto Hayama</small></p>
+    </footer>
+</body>
+<html>

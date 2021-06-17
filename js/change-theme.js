@@ -1,58 +1,63 @@
-var parameter = location.search;
-var link = document.getElementsByName("link");
-
-window.addEventListener('DOMContentLoaded', function () {
-  const toggle = document.getElementById("turn-dark");
-
-  //add URL parameter to link
-  for (let i = 0; i < link.length; ++i) {
-    document.getElementsByName("link")[i].href += "?switch=on";
-  }
-
-  if (parameter == "") {
-    //default theme setting
-    if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      toggle.checked = true;
-      DarkTheme();
-    }else{
-      toggle.checked = false;
-      LightTheme();
-    }
-  } else if (parameter == "?switch=on") {
-    toggle.checked = true;
-    DarkTheme();
-  } else if(parameter == "?switch=off"){
-    LightTheme();
-    toggle.checked = false;
-  } else {
-    alert("Error：URLパラメータが変更されています/URL parameter has been changed");
-    location.search = "";
-    window.location.reload;
-  }
-  //when toggle button is changed
-  toggle.addEventListener("change", () => {
-    if (toggle.checked == true) {
-      DarkTheme();
+//default theme setting
+function setting() {
+    const toggle = document.getElementById("turn-dark");
+    const URLparameter = location.search.substring(1);
+    if (URLparameter == "switch=on") {
+        toggle.checked = true;
+        DarkTheme();
+    } else if (URLparameter == "switch=off") {
+        LightTheme();
     } else {
-      LightTheme();
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            toggle.checked = true;
+            DarkTheme();
+        } else {
+            LightTheme();
+        }
     }
-  });
-});
-
-//turn on light mode
-function LightTheme(){
-  document.body.classList.remove("dark-theme");
-  document.logo.src = "../img/light_logo.png";
-  for (let i = 0; i < link.length; ++i) {
-    document.getElementsByName("link")[i].href = link[i].href.replace('?switch=on', '?switch=off');
-  }
+    //change theme
+    toggle.addEventListener("change", () => {
+        if (toggle.checked == true) {
+            DarkTheme();
+        } else {
+            LightTheme();
+        }
+    });
+    //open menu bar
+    const btn = document.getElementById("btn-menu");
+    const header = document.querySelector(".header-li");
+    const selector = document.querySelector(".selector");
+    const selector1 = document.querySelector(".selector").childNodes[1];
+    const selector2 = document.querySelector(".selector").childNodes[3];
+    btn.addEventListener("click", () => {
+        if (btn.value == "MENU") {
+            btn.value = "CLOSE";
+            header.classList.add("open-menu");
+            header.appendChild(selector1);
+            header.appendChild(selector2);
+        } else {
+            btn.value = "MENU";
+            header.classList.remove("open-menu");
+            selector.appendChild(selector1);
+            selector.appendChild(selector2);
+        }
+    });
 }
-
+//turn on light mode
+function LightTheme() {
+    const link = document.querySelectorAll("a");
+    document.body.classList.remove("dark-theme");
+    document.logo.src = "../img/light_logo.png";
+    link.forEach((x) => {
+        x.search = "switch=off";
+    });
+}
 //turn on dark mode
-function DarkTheme(){
-  document.body.classList.add("dark-theme");
-  document.logo.src = "../img/dark_logo.png";
-  for (let i = 0; i < link.length; ++i) {
-    document.getElementsByName("link")[i].href = link[i].href.replace('?switch=off', '?switch=on');
-  }
+function DarkTheme() {
+    const link = document.querySelectorAll("a");
+    document.body.classList.add("dark-theme");
+    document.logo.src = "../img/dark_logo.png";
+    link.forEach((x) => {
+        x.search = "switch=on";
+    });
 }
